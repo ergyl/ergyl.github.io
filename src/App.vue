@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import Terminal from "@/components/Terminal.vue";
+import AboutWindow from "@/components/AboutWindow.vue";
+import SkillsFolder from "@/components/SkillsFolder.vue";
+import ProjectsGrid from "@/components/ProjectsGrid.vue";
+import ContactWindow from "@/components/ContactWindow.vue";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    Yo
   </header>
 
   <main>
-    <TheWelcome />
+    <div class="min-h-screen p-4">
+      <div class="scanlines fixed inset-0 pointer-events-none"/>
+      <div class="max-w-6xl mx-auto space-y-4">
+        <Terminal/>
+        <AboutWindow/>
+        <SkillsFolder/>
+        <ProjectsGrid/>
+        <ContactWindow/>
+      </div>
+    </div>
   </main>
 </template>
 
