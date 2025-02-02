@@ -9,7 +9,10 @@
     }
   ],
   "compilerOptions": {
-    "types": ["vite/client", "vue"]
+    "types": ["vite/client", "vue"],
+    "moduleResolution": "Node16",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   }
 }
 

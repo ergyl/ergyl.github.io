@@ -8,7 +8,7 @@ import ContactWindow from "@/components/ContactWindow.vue";
 
 <template>
   <header>
-    Yo
+    Erik Gylleus logo
   </header>
 
   <main>
