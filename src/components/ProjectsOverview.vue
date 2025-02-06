@@ -1,0 +1,100 @@
+<template>
+  <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div
+        v-for="project in projects"
+        :key="project.title"
+        class="retro-window"
+    >
+      <div class="retro-window-title">
+        <span class="select-none">{{ project.title }}</span>
+      </div>
+      <div class="p-4">
+        <p class="mb-2">{{ project.description }}</p>
+        <span
+            v-for="(tech, index) in project.tech"
+            :key="index"
+            class="text-sm text-gray-600">{{ tech }}<span v-if="index < project.tech.length - 1">, </span>
+        </span>
+      </div>
+
+      <!-- Topics with dynamic background colors -->
+      <div class="flex flex-wrap gap-2 p-2">
+        <span
+            v-for="(topic, index) in project.topics"
+            :key="index"
+            :class="[topicsBgClass[topic], 'pill']">{{ topic }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import type { Project } from "@/models/Project.ts";
+
+// Sample projects
+const projects = ref<Project[]>([
+  {
+    title: "Classifieds Platform",
+    description: "Web application for users to publish ads for items.",
+    tech: [
+      "Java",
+      "Spring Boot",
+      "TypeScript",
+      "ActiveMQ",
+      "Vue.js",
+      "Node.js",
+      "Vite",
+      "Bootstrap"
+    ],
+    topics: [
+      "Backend",
+      "Microservices",
+      "REST API"
+    ]
+  },
+  {
+    title: "Educational Game Web Application",
+    description: "Web application with a memory-style educational game, fetching data from a public API.",
+    tech: [
+      "JavaScript",
+      "Vue.js",
+      "Node.js",
+      "Vite",
+      "Vitest",
+      "TailwindCSS",
+      "Pinia"
+    ],
+    topics: [
+      "Frontend",
+      "Game"
+    ]
+  },
+  {
+    title: "Arcade Game",
+    description: "Classic arcade game for desktop, inspired by Flappy Birb.",
+    tech: [
+      "Java",
+      "libGDX",
+      "Gradle"
+    ],
+    topics: [
+      "Desktop",
+      "Game"
+    ]
+  },
+]);
+
+// Define the mapping of topics to background color classes
+const topicsBgClass = computed(() => ({
+  "Backend": "bg-blue-400",
+  "Microservices": "bg-green-400",
+  "REST API": "bg-yellow-400",
+  "Frontend": "bg-pink-400",
+  "Game": "bg-purple-400",
+  "Desktop": "bg-teal-400",
+}));
+</script>
+
+<style scoped>
+</style>

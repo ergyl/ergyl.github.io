@@ -1,49 +1,222 @@
 @import "tailwindcss";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@theme {
+
+    /* Primary: Blue Dacnis */
+    --primary-100: #F2FAFF;
+    --primary-200: #C6EAFF;
+    --primary-300: #99DFFD;
+    --primary-400: #6BD6F7;
+    --primary-500: #3ECDED;
+    --primary-600: #1BA7BB;
+    --primary-700: #0C818A;
+    --primary-800: #065758;
+    --primary-900: #022624;
+
+    /* Accent: Purplish Pink */
+    --accent-100: #FFF2FA;
+    --accent-200: #FFC9EB;
+    --accent-300: #FC9EE0;
+    --accent-400: #F571D5;
+    --accent-500: #E846CA;
+    --accent-600: #B822A5;
+    --accent-700: #87117F;
+    --accent-800: #570956;
+    --accent-900: #250426;
+
+    /* Neutral */
+    --neutral-100: #FAFBFC;
+    --neutral-200: #E8EBED;
+    --neutral-300: #D7DBDD;
+    --neutral-400: #C6CBCD;
+    --neutral-500: #B5BBBD;
+    --neutral-600: #8F9597;
+    --neutral-700: #6A7071;
+    --neutral-800: #454B4C;
+    --neutral-900: #222626;
+
+    --font-body: #222222;
 }
 
-:root {
-  --section-gap: 2rem; /* Adjust this value as needed */
+/* Base Layer: Global styles and resets.
+ If you want to add custom CSS styles to specific HTML elements,
+add those styles to the base layer.
+
+Example: if you want to style all H2 elements you use the base layer.
+*/
+
+@layer base {
+    /* Global Reset and box-sizing */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Body styling */
+    body {
+        min-height: 100vh;
+        font-family: monospace, Inter;
+        color: var(--font-body);
+        background: var(--primary-200);
+        text-rendering: optimizeLegibility;
+        @apply text-base;
+    }
+
+    body strong {
+        @apply font-bold
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply select-none
+    }
+
+    h1 {
+        font-size: 32px;
+        @apply font-extrabold
+    }
+
+    h2 {
+        @apply text-2xl font-bold
+    }
+
+    h3 {
+        @apply text-xl font-bold
+    }
+
+    h4 {
+        @apply text-base font-bold;
+    }
+
+    /* sm breakpoint */
+    @media (min-width: 640px) {
+        h1 {
+            @apply text-3xl;
+        }
+
+        h2 {
+            @apply text-2xl;
+        }
+
+        h3 {
+            @apply text-xl;
+        }
+
+        h4 {
+            @apply text-lg;
+        }
+
+        h5 {
+            @apply text-base;
+        }
+
+        h6 {
+            @apply text-sm;
+        }
+    }
+
+    /* md breakpoint */
+    @media (min-width: 768px) {
+        h1 {
+            @apply text-4xl;
+        }
+
+        h2 {
+            @apply text-3xl;
+        }
+    }
+
+    /* lg breakpoint */
+    @media (min-width: 1024px) {
+        .magic-margin {
+            margin-left: calc(8px + 1.5625vw);
+            margin-right: calc(8px + 1.5625vw);
+        }
+
+        body {
+            font-size: 1.125rem;
+        }
+
+        h1 {
+            font-size: 2.125rem;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+        }
+    }
 }
 
-/* Retro Window Styling */
-.retro-window {
-  @apply bg-[#c0c0c0] border-4 border-[#dfdfdf] border-b-[#808080] border-r-[#808080];
+/* Components Layer: Custom UI components */
+@layer components {
+    #app {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    #terminal {
+        background-color: var(--charcoal);
+        color: var(--terminal-font);
+    }
+
+    .retro-window {
+        @apply bg-[#c0c0c0] border-4 border-[#dfdfdf] border-b-[#808080] border-r-[#808080];
+    }
+
+    .retro-window-title {
+        @apply bg-[#000080] text-white px-2 py-1 flex justify-between items-center;
+    }
+    
+    .pill {
+    @apply bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600
+    }
+
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .cursor-blink {
+        animation: blink 1s step-end infinite;
+    }
+
+    a {
+        text-decoration: none;
+        color: #008080;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: rgba(0, 128, 128, 0.2);
+    }
 }
 
-.retro-window-title {
-  @apply bg-[#000080] text-white px-2 py-1 flex justify-between items-center;
-}
+/* Utilities Layer: Custom utilities */
+@layer utilities {
+    /* custom colors */
+    :root {
+        --charcoal: #403E43;
+        --terminal-font: #4ade80;
+        --section-gap: 2rem; /* Adjust this value as needed */
+    }
 
-.scanlines {
-  background: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0) 50%,
-          rgba(0, 0, 0, 0.1) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
-
-a {
-  text-decoration: none;
-  color: #008080;
-  transition: 0.3s;
-}
-
-a:hover {
-  background-color: rgba(0, 128, 128, 0.2);
+    .magic-margin {
+        margin-left: calc(8px + 1.5625vw);
+        margin-right: calc(8px + 1.5625vw);
+    }
 }
