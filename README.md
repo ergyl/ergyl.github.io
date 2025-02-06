@@ -26,6 +26,28 @@ npm install
 npm run dev
 ```
 
+
+side notes:
+Vue + Vite with Static Routing:
+--
+If you're using Vite, you can still create multiple pages with Vue components but without Vue Router. You can create a static structure, where each page has its own component, and you link between these pages using traditional <a> tags.
+Pros: Keeps Vue components for individual pages and maintains a static approach.
+Cons: Not as dynamic as an SPA; page reloads happen when navigating to different pages.
+
+--
+Now, run:
+
+```sh
+npm run build
+npm run deploy
+```
+
+This will:
+
+    Build your project into the dist/ folder.
+    Push the dist/ folder to the gh-pages branch.
+
+--
 ### Type-Check, Compile and Minify for Production
 
 ```sh
