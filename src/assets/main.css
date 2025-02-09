@@ -1,19 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-    --color-apple-50: #f3fbf2;
-    --color-apple-100: #e2f7e1;
-    --color-apple-200: #c6eec4;
-    --color-apple-300: #9adf96;
-    --color-apple-400: #65c761;
-    --color-apple-500: #3ca338;
-    --color-apple-600: #2f8d2c;
-    --color-apple-700: #277025;
-    --color-apple-800: #235922;
-    --color-apple-900: #1e491e;
-    --color-apple-950: #0b280b;
+    --color-primary-background: #73797a;
+    --color-secondary-background: rgb(198, 196, 196);
+    --color-primary-foreground: #001A26;
+    --color-secondary-foreground: #014D87;
+    --color-primary-accent: #8024fc;
+    --color-secondary-accent: #503cf4;
+    
+    --color-btn-primary: #8024fc;
+    --color-btn-hover: #9955f6;
+    --color-btn-press: #320f63;
+    --color-btn-disabled: #616063;
+    --color-btn-font-disabled: #2f2f30;
 
-    --font-body: #222222;
+
+    --color-charcoal: rgb(64, 62, 67);
+    --color-terminal-font: rgb(74, 222, 128);
+    --color-font-body: rgb(211, 201, 201);
+    --color-link: rgb(50, 111, 27);
 }
 
 /* Base Layer: Global styles and resets.
@@ -37,14 +42,28 @@ Example: if you want to style all H2 elements you use the base layer.
     body {
         min-height: 100vh;
         font-family: monospace, Inter;
-        color: var(--font-body);
-        background: var(--color-apple-950);
         text-rendering: optimizeLegibility;
+        background-color: var(--color-primary-background);
+        color: var(--color-font-body);
         @apply text-base;
     }
 
     body strong {
         @apply font-bold
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--color-link);
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: rgba(0, 128, 128, 0.2);
+    }
+    
+    button:disabled {
+        color: var(--color-btn-font-disabled);
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -144,16 +163,19 @@ Example: if you want to style all H2 elements you use the base layer.
     }
 
     #terminal {
-        background-color: var(--charcoal);
-        color: var(--terminal-font);
+        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+        background-color: var(--color-charcoal);
+        color: var(--color-terminal-font);
     }
 
     .retro-window {
-        @apply bg-[#c0c0c0] border-4 border-[#dfdfdf] border-b-[#808080] border-r-[#808080];
+        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+        @apply bg-[var(--color-primary-foreground)];
     }
 
     .retro-window-title {
-        @apply bg-[#000080] text-white px-2 py-1 flex justify-between items-center;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+        @apply bg-gradient-to-r from-[var(--color-primary-accent)] to-[var(--color-secondary-accent)] text-white px-2 py-1 flex justify-between items-center;
     }
 
     .pill {
@@ -172,24 +194,11 @@ Example: if you want to style all H2 elements you use the base layer.
     .cursor-blink {
         animation: blink 1s step-end infinite;
     }
-
-    a {
-        text-decoration: none;
-        color: #008080;
-        transition: 0.3s;
-    }
-
-    a:hover {
-        background-color: rgba(0, 128, 128, 0.2);
-    }
 }
 
 /* Utilities Layer: Custom utilities */
 @layer utilities {
-    /* custom colors */
     :root {
-        --charcoal: #403E43;
-        --terminal-font: #4ade80;
         --section-gap: 2rem; /* Adjust this value as needed */
     }
 

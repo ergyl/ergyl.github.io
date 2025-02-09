@@ -9,7 +9,13 @@ import Button from "@/components/ui/Button.vue";
 
 <template>
   <header>
-    <div class="wrapper"> Erik Gylleus' Website
+    <div class="wrapper">
+      <label class="inline-flex items-center cursor-pointer">
+        <input type="checkbox" value="" class="sr-only peer">
+        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
+        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Darkmode</span>
+      </label>
+
     </div>
   </header>
 
@@ -18,7 +24,7 @@ import Button from "@/components/ui/Button.vue";
       <div class="fixed inset-0 pointer-events-none"/>
       <div class="max-w-6xl mx-auto space-y-4">
         <Terminal/>
-        <Window header-title="about.txt" body-title="About me">
+        <Window id="about" header-title="about.txt" body-title="About me">
           <p> I'm Erik, a junior software developer based in Gothenburg, Sweden. Coding is my passion, and I'm dedicated
             to constantly improving through continuous learning. My journey in tech started with a curiosity about how
             computers work, and now I'm turning that curiosity into a career.
@@ -36,19 +42,19 @@ import Button from "@/components/ui/Button.vue";
           Some other things that I think are fun are: gaming, cooking, and travelling.
           </p>
         </Window>
-        <Window header-title="skills.sys">
+        <Window id="skills" header-title="skills.sys">
           <Skills/>
         </Window>
-        <Window header-title="projects.exe">
+        <Window id="projects" header-title="projects/">
           <ProjectsOverview/>
         </Window>
-        <Window header-title="resume.md" body-title="Checkout my CV">
+        <Window id="resume" header-title="resume.md" body-title="Checkout my CV">
           <Button
               text="My Resume"
               :rounded=true
               route="https://www.google.com/"/>
         </Window>
-        <Window header-title="contact.txt" body-title="Hi there">
+        <Window id="contact" header-title="contact.txt" body-title="Hi there">
         <small>Hello</small>
         </Window>
       </div>

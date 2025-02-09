@@ -1,18 +1,14 @@
 <template>
-  <component
-      :is="isExternal ? 'a' : 'button'"
-      class="flex justify-center items-center select-none"
+  <button
+      class="flex justify-center items-center select-none leading-none"
       :class="[
-      'text-white focus:ring-4',
-      rounded ? 'rounded-lg' : 'rounded-none',
-      rounded ? 'min-h-20' : 'min-h-14',
-      'text-2xl focus:outline-none',
+      'focus:ring-4',
+      rounded ? 'rounded-lg sm:rounded-md' : 'rounded-none',
+      rounded ? 'min-h-14' : 'min-h-12',
+      'text-xl sm:text-2xl md:text-3xl focus:outline-none',
       buttonClasses,
       'px-5 py-2.5 inline-flex items-center',
     ]"
-      :href="isExternal ? route : undefined"
-      :target="isExternal ? '_blank' : undefined"
-      :rel="isExternal ? 'noopener noreferrer' : undefined"
       :disabled="disabled"
       :style="{ boxShadow }"
       @click="handleClick"
@@ -22,10 +18,12 @@
       @touchstart="isPressed = true"
       @touchend="isPressed = false"
       @touchcancel="isPressed = false"
+      text=""
   >
-    <span class="leading-none">{{ text }}</span>
-  </component>
+    {{ text }}
+  </button>
 </template>
+
 
 <script setup lang="ts">
 import {computed, ref} from "vue";
@@ -52,7 +50,6 @@ const props = defineProps({
 
 const isPressed = ref(false);
 
-const isExternal = computed(() => props.route.startsWith("http"));
 const boxShadow = computed(() =>
     props.rounded && !props.disabled && !isPressed.value
         ? "5px 5px 4px 0 rgba(0, 0, 0, 0.25)"
@@ -61,18 +58,16 @@ const boxShadow = computed(() =>
 
 const buttonClasses = computed(() => {
   if (props.disabled) {
-    return "bg-[var(--primary-200)] text-[var(--neutral-900)]"; // Disabled state with custom colors
+    return "bg-[var(--color-btn-disabled)] text-[var(--color-btn-font-disabled)]";
   } else if (isPressed.value) {
-    return "bg-[var(--accent-500)]"; // On press, use accent color
+    return "bg-[var(--color-primary-accent)]";
   } else {
-    return "bg-[var(--primary-500)] hover:bg-[var(--primary-600)]"; // Default button and hover state
+    return "bg-[var(--color-btn-primary)] hover:bg-[var(--color-btn-hover)]";
   }
 });
 
-// Handle click event
-const handleClick = (event: Event) => {
-  if (props.disabled || isExternal.value) return; // Allow default behavior for external links or disabled buttons
+const handleClick = (event: MouseEvent | TouchEvent) => {
+  if (props.disabled) return; 
   event.preventDefault();
-  // No internal logic for route handling here, just prevent default on click
 };
 </script>
