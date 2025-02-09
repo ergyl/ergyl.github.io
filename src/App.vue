@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Terminal from "@/components/Terminal.vue";
 import Footer from "@/components/Footer.vue";
-import ResumeWindow from "@/components/ResumeWindow.vue";
 import Window from "@/components/Window.vue";
 import Skills from "@/components/Skills.vue";
 import ProjectsOverview from "@/components/ProjectsOverview.vue";

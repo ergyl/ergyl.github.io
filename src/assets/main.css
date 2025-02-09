@@ -1,39 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-
-    /* Primary: Blue Dacnis */
-    --primary-100: #F2FAFF;
-    --primary-200: #C6EAFF;
-    --primary-300: #99DFFD;
-    --primary-400: #6BD6F7;
-    --primary-500: #3ECDED;
-    --primary-600: #1BA7BB;
-    --primary-700: #0C818A;
-    --primary-800: #065758;
-    --primary-900: #022624;
-
-    /* Accent: Purplish Pink */
-    --accent-100: #FFF2FA;
-    --accent-200: #FFC9EB;
-    --accent-300: #FC9EE0;
-    --accent-400: #F571D5;
-    --accent-500: #E846CA;
-    --accent-600: #B822A5;
-    --accent-700: #87117F;
-    --accent-800: #570956;
-    --accent-900: #250426;
-
-    /* Neutral */
-    --neutral-100: #FAFBFC;
-    --neutral-200: #E8EBED;
-    --neutral-300: #D7DBDD;
-    --neutral-400: #C6CBCD;
-    --neutral-500: #B5BBBD;
-    --neutral-600: #8F9597;
-    --neutral-700: #6A7071;
-    --neutral-800: #454B4C;
-    --neutral-900: #222626;
+    --color-apple-50: #f3fbf2;
+    --color-apple-100: #e2f7e1;
+    --color-apple-200: #c6eec4;
+    --color-apple-300: #9adf96;
+    --color-apple-400: #65c761;
+    --color-apple-500: #3ca338;
+    --color-apple-600: #2f8d2c;
+    --color-apple-700: #277025;
+    --color-apple-800: #235922;
+    --color-apple-900: #1e491e;
+    --color-apple-950: #0b280b;
 
     --font-body: #222222;
 }
@@ -60,7 +38,7 @@ Example: if you want to style all H2 elements you use the base layer.
         min-height: 100vh;
         font-family: monospace, Inter;
         color: var(--font-body);
-        background: var(--primary-200);
+        background: var(--color-apple-950);
         text-rendering: optimizeLegibility;
         @apply text-base;
     }
@@ -177,9 +155,9 @@ Example: if you want to style all H2 elements you use the base layer.
     .retro-window-title {
         @apply bg-[#000080] text-white px-2 py-1 flex justify-between items-center;
     }
-    
+
     .pill {
-    @apply bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600
+        @apply bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600
     }
 
     @keyframes blink {
