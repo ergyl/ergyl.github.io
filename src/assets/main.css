@@ -1,25 +1,39 @@
 @import "tailwindcss";
 
-@theme {
-    --color-primary-background: #73797a;
-    --color-secondary-background: rgb(198, 196, 196);
-    --color-primary-foreground: #001A26;
-    --color-secondary-foreground: #014D87;
-    --color-primary-accent: #8024fc;
-    --color-secondary-accent: #503cf4;
-    
-    --color-btn-primary: #8024fc;
-    --color-btn-hover: #9955f6;
-    --color-btn-press: #320f63;
-    --color-btn-disabled: #616063;
-    --color-btn-font-disabled: #2f2f30;
+@custom-variant dark (&:where(.dark, .dark *));
 
-
-    --color-charcoal: rgb(64, 62, 67);
-    --color-terminal-font: rgb(74, 222, 128);
-    --color-font-body: rgb(211, 201, 201);
-    --color-link: rgb(50, 111, 27);
+/* Light theme */
+@theme light {
+    --color-base-100: oklch(98% 0 0);
+    --color-base-200: oklch(97% 0 0);
+    --color-base-300: oklch(92% 0 0);
+    --color-base-content: oklch(20% 0 0);
+    --color-primary: oklch(64% 0.2 131.684);
+    --color-primary-content: oklch(98% 0.031 120.757);
+    --color-secondary: oklch(57% 0.245 27.325);
+    --color-secondary-content: oklch(97% 0.013 17.38);
+    --color-accent: oklch(64% 0.222 41.116);
+    --color-accent-content: oklch(98% 0.016 73.684);
+    --color-neutral: oklch(43% 0 0);
+    --color-neutral-content: oklch(98% 0 0);
 }
+
+/* Dark theme */
+@theme dark {
+    --color-base-100: oklch(25.33% 0.016 252.42);
+    --color-base-200: oklch(23.26% 0.014 253.1);
+    --color-base-300: oklch(21.15% 0.012 254.09);
+    --color-base-content: oklch(97.807% 0.029 256.847);
+    --color-primary: oklch(58% 0.233 277.117);
+    --color-primary-content: oklch(96% 0.018 272.314);
+    --color-secondary: oklch(65% 0.241 354.308);
+    --color-secondary-content: oklch(94% 0.028 342.258);
+    --color-accent: oklch(77% 0.152 181.912);
+    --color-accent-content: oklch(38% 0.063 188.416);
+    --color-neutral: oklch(14% 0.005 285.823);
+    --color-neutral-content: oklch(92% 0.004 286.32);
+}
+
 
 /* Base Layer: Global styles and resets.
  If you want to add custom CSS styles to specific HTML elements,
@@ -52,6 +66,10 @@ Example: if you want to style all H2 elements you use the base layer.
         @apply font-bold
     }
 
+    header {
+        line-height: 1.5;
+    }
+
     a {
         text-decoration: none;
         color: var(--color-link);
@@ -61,7 +79,7 @@ Example: if you want to style all H2 elements you use the base layer.
     a:hover {
         background-color: rgba(0, 128, 128, 0.2);
     }
-    
+
     button:disabled {
         color: var(--color-btn-font-disabled);
     }
@@ -136,6 +154,18 @@ Example: if you want to style all H2 elements you use the base layer.
             font-size: 1.125rem;
         }
 
+        header {
+            display: flex;
+            place-items: center;
+            padding-right: calc(var(--section-gap) / 2);
+        }
+
+        header .wrapper {
+            display: flex;
+            place-items: flex-start;
+            flex-wrap: wrap;
+        }
+
         h1 {
             font-size: 2.125rem;
         }
@@ -199,7 +229,18 @@ Example: if you want to style all H2 elements you use the base layer.
 /* Utilities Layer: Custom utilities */
 @layer utilities {
     :root {
-        --section-gap: 2rem; /* Adjust this value as needed */
+        --section-gap: 2rem;
+        --border-opacity: 0.12;
+        --high-emphasis-opacity: 0.87;
+        --medium-emphasis-opacity: 0.60;
+        --disabled-opacity: 0.38;
+        --idle-opacity: 0.04;
+        --hover-opacity: 0.04;
+        --focus-opacity: 0.12;
+        --selected-opacity: 0.08;
+        --activated-opacity: 0.12;
+        --pressed-opacity: 0.12;
+        --dragged-opacity: 0.08;
     }
 
     .magic-margin {
