@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Light theme */
-@theme light {
+@theme {
     --color-base-100: oklch(98% 0 0);
     --color-base-200: oklch(97% 0 0);
     --color-base-300: oklch(92% 0 0);
@@ -19,7 +19,7 @@
 }
 
 /* Dark theme */
-@theme dark {
+.dark {
     --color-base-100: oklch(25.33% 0.016 252.42);
     --color-base-200: oklch(23.26% 0.014 253.1);
     --color-base-300: oklch(21.15% 0.012 254.09);
@@ -33,7 +33,6 @@
     --color-neutral: oklch(14% 0.005 285.823);
     --color-neutral-content: oklch(92% 0.004 286.32);
 }
-
 
 /* Base Layer: Global styles and resets.
  If you want to add custom CSS styles to specific HTML elements,
@@ -57,9 +56,7 @@ Example: if you want to style all H2 elements you use the base layer.
         min-height: 100vh;
         font-family: monospace, Inter;
         text-rendering: optimizeLegibility;
-        background-color: var(--color-primary-background);
-        color: var(--color-font-body);
-        @apply text-base;
+        @apply text-primary bg-primary;
     }
 
     body strong {
@@ -72,16 +69,16 @@ Example: if you want to style all H2 elements you use the base layer.
 
     a {
         text-decoration: none;
-        color: var(--color-link);
         transition: 0.3s;
+        @apply text-accent-content bg-accent
     }
 
     a:hover {
-        background-color: rgba(0, 128, 128, 0.2);
+        @apply text-accent bg-accent-content
     }
 
     button:disabled {
-        color: var(--color-btn-font-disabled);
+        color: grey;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -155,6 +152,7 @@ Example: if you want to style all H2 elements you use the base layer.
         }
 
         header {
+            @apply flex;
             display: flex;
             place-items: center;
             padding-right: calc(var(--section-gap) / 2);
@@ -182,69 +180,79 @@ Example: if you want to style all H2 elements you use the base layer.
             font-size: 1.25rem;
         }
     }
-}
 
-/* Components Layer: Custom UI components */
-@layer components {
-    #app {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    #terminal {
-        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-        background-color: var(--color-charcoal);
-        color: var(--color-terminal-font);
-    }
-
-    .retro-window {
-        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-        @apply bg-[var(--color-primary-foreground)];
-    }
-
-    .retro-window-title {
-        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-        @apply bg-gradient-to-r from-[var(--color-primary-accent)] to-[var(--color-secondary-accent)] text-white px-2 py-1 flex justify-between items-center;
-    }
-
-    .pill {
-        @apply bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-600
-    }
-
-    @keyframes blink {
-        0%, 100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0;
+    @media (prefers-reduced-motion) {
+        .gif {
+            display: none;
         }
     }
-
-    .cursor-blink {
-        animation: blink 1s step-end infinite;
-    }
 }
 
-/* Utilities Layer: Custom utilities */
-@layer utilities {
-    :root {
-        --section-gap: 2rem;
-        --border-opacity: 0.12;
-        --high-emphasis-opacity: 0.87;
-        --medium-emphasis-opacity: 0.60;
-        --disabled-opacity: 0.38;
-        --idle-opacity: 0.04;
-        --hover-opacity: 0.04;
-        --focus-opacity: 0.12;
-        --selected-opacity: 0.08;
-        --activated-opacity: 0.12;
-        --pressed-opacity: 0.12;
-        --dragged-opacity: 0.08;
+    /* Components Layer: Custom UI components */
+    @layer components {
+        #app {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        #terminal {
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+            @apply bg-base-100 text-primary
+        }
+
+        .card {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .retro-window {
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+            @apply bg-base-content;
+        }
+
+        .retro-window-title {
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+            @apply bg-gradient-to-r from-base-100 to-accent text-white px-2 py-1 flex justify-between items-center;
+        }
+
+        .pill {
+            @apply text-base-100 rounded-full px-3 py-1 text-sm font-semibold
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
     }
 
-    .magic-margin {
-        margin-left: calc(8px + 1.5625vw);
-        margin-right: calc(8px + 1.5625vw);
+    /* Utilities Layer: Custom utilities */
+    @layer utilities {
+        :root {
+            --section-gap: 2rem;
+            --border-opacity: 0.12;
+            --high-emphasis-opacity: 0.87;
+            --medium-emphasis-opacity: 0.60;
+            --disabled-opacity: 0.38;
+            --idle-opacity: 0.04;
+            --hover-opacity: 0.04;
+            --focus-opacity: 0.12;
+            --selected-opacity: 0.08;
+            --activated-opacity: 0.12;
+            --pressed-opacity: 0.12;
+            --dragged-opacity: 0.08;
+        }
+
+        .magic-margin {
+            margin-left: calc(8px + 1.5625vw);
+            margin-right: calc(8px + 1.5625vw);
+        }
     }
-}

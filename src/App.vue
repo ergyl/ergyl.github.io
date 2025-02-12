@@ -1,21 +1,7 @@
-<script setup lang="ts">
-import Terminal from "@/components/Terminal.vue";
-import Footer from "@/components/Footer.vue";
-import Window from "@/components/Window.vue";
-import Skills from "@/components/Skills.vue";
-import ProjectsOverview from "@/components/ProjectsOverview.vue";
-import Button from "@/components/ui/Button.vue";
-</script>
-
 <template>
   <header>
     <div class="wrapper">
-      <label class="inline-flex items-center cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer">
-        <div class="relative w-9 sm:w-11 h-5 sm:h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
-        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Darkmode</span>
-      </label>
-
+     <ToggleThemeSwitch/>
     </div>
   </header>
 
@@ -39,7 +25,7 @@ import Button from "@/components/ui/Button.vue";
             in sharing knowledge, teaching each other those new things we learn.
           </p>
           <p>
-          Some other things that I think are fun are: gaming, cooking, and travelling.
+            Some other things that I think are fun are: gaming, cooking, and travelling.
           </p>
         </Window>
         <Window id="skills" header-title="skills.sys">
@@ -55,7 +41,7 @@ import Button from "@/components/ui/Button.vue";
               route="https://www.google.com/"/>
         </Window>
         <Window id="contact" header-title="contact.txt" body-title="Hi there">
-        <small>Hello</small>
+          <small>Hello</small>
         </Window>
       </div>
     </div>
@@ -67,13 +53,48 @@ import Button from "@/components/ui/Button.vue";
 
 <script setup lang="ts">
 import Terminal from "@/components/Terminal.vue";
+import {ref} from "vue";
 import Footer from "@/components/Footer.vue";
 import Window from "@/components/Window.vue";
 import Skills from "@/components/Skills.vue";
 import ProjectsOverview from "@/components/ProjectsOverview.vue";
 import Button from "@/components/ui/Button.vue";
+import ToggleThemeSwitch from "@/components/ui/ToggleThemeSwitch.vue";
+
+// Reactive theme state
+const theme = ref(localStorage.theme || "system");
+
+/**
+ * If the `theme` key does not exist in `localStorage` upon visiting
+ * the website for the first time, the code will default to the value
+ * `"system"`.
+ *
+ * The `applyTheme` function will then check the system preference for
+ * the color scheme and apply the appropriate theme based on the
+ * user's system settings.
+ *
+ * This code does not explicitly set the `theme` key in `localStorage`
+ * to any value unless the user explicitly selects a theme.
+ * It only sets the `theme` key when the user chooses either `"dark"` or `"light"`.
+ *
+ * If the theme is set to `"system"`, it removes the `theme` key from
+ * `localStorage` and applies the system preference.
+ *
+ */
+const applyTheme = () => {
+  const root = document.documentElement;
+
+  if (theme.value === "dark") {
+    root.classList.add("dark");
+    localStorage.theme = "dark";
+  } else if (theme.value === "light") {
+    root.classList.remove("dark");
+    localStorage.theme = "light";
+  } else {
+    // System preference
+    localStorage.removeItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.classList.toggle("dark", prefersDark);
+  }
+};
 </script>
-
-<style scoped>
-
-</style>
