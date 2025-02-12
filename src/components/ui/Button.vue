@@ -58,11 +58,11 @@ const boxShadow = computed(() =>
 
 const buttonClasses = computed(() => {
   if (props.disabled) {
-    return "bg-[var(--color-btn-disabled)] text-[var(--color-btn-font-disabled)]";
+    return "btn-disabled";
   } else if (isPressed.value) {
-    return "bg-[var(--color-primary-accent)]";
+    return "btn-pressed";
   } else {
-    return "bg-[var(--color-btn-primary)] hover:bg-[var(--color-btn-hover)]";
+    return "btn-active hover:btn-hover";
   }
 });
 

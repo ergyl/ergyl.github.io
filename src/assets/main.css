@@ -188,71 +188,93 @@ Example: if you want to style all H2 elements you use the base layer.
     }
 }
 
-    /* Components Layer: Custom UI components */
-    @layer components {
-        #app {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+/* Components Layer: Custom UI components */
+@layer components {
+    #app {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-        #terminal {
-            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-            @apply bg-base-100 text-primary
-        }
+    #terminal {
+        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+        @apply bg-base-100 text-primary
+    }
 
-        .card {
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .card {
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .retro-window {
-            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-            @apply bg-base-content;
-        }
+    .retro-window {
+        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
+        @apply bg-base-content;
+    }
 
-        .retro-window-title {
-            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-            @apply bg-gradient-to-r from-base-100 to-accent text-white px-2 py-1 flex justify-between items-center;
-        }
+    .retro-window-title {
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+        @apply bg-gradient-to-r from-base-100 to-accent text-white px-2 py-1 flex justify-between items-center;
+    }
 
-        .pill {
-            @apply text-base-100 rounded-full px-3 py-1 text-sm font-semibold
-        }
+    .pill {
+        @apply text-base-100 rounded-full px-3 py-1 text-sm font-semibold
+    }
 
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
+    .btn-disabled {
+        cursor: not-allowed;
+        opacity: var(--disabled-opacity);
+        @apply bg-yellow-200 text-accent-content
+    }
 
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
+    .btn-active {
+        cursor: pointer;
+        @apply bg-accent text-accent-content hover:opacity-90
+    }
+
+    .btn-hover {
+        opacity: var(--hover-opacity);
+        @apply bg-red-400 text-accent-content
+    }
+
+    .btn-pressed {
+        opacity: var(--pressed-opacity);
+        @apply bg-blue-400 text-accent-content
+    }
+
+
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
         }
     }
 
-    /* Utilities Layer: Custom utilities */
-    @layer utilities {
-        :root {
-            --section-gap: 2rem;
-            --border-opacity: 0.12;
-            --high-emphasis-opacity: 0.87;
-            --medium-emphasis-opacity: 0.60;
-            --disabled-opacity: 0.38;
-            --idle-opacity: 0.04;
-            --hover-opacity: 0.04;
-            --focus-opacity: 0.12;
-            --selected-opacity: 0.08;
-            --activated-opacity: 0.12;
-            --pressed-opacity: 0.12;
-            --dragged-opacity: 0.08;
-        }
-
-        .magic-margin {
-            margin-left: calc(8px + 1.5625vw);
-            margin-right: calc(8px + 1.5625vw);
-        }
+    .cursor-blink {
+        animation: blink 1s step-end infinite;
     }
+}
+
+/* Utilities Layer: Custom utilities */
+@layer utilities {
+    :root {
+        --section-gap: 2rem;
+        --border-opacity: 0.12;
+        --high-emphasis-opacity: 0.87;
+        --medium-emphasis-opacity: 0.60;
+        --disabled-opacity: 0.38;
+        --idle-opacity: 0.04;
+        --hover-opacity: 0.04;
+        --focus-opacity: 0.12;
+        --selected-opacity: 0.08;
+        --activated-opacity: 0.12;
+        --pressed-opacity: 0.12;
+        --dragged-opacity: 0.08;
+    }
+
+    .magic-margin {
+        margin-left: calc(8px + 1.5625vw);
+        margin-right: calc(8px + 1.5625vw);
+    }
+}
