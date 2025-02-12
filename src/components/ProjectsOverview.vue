@@ -1,22 +1,20 @@
 <template>
-  <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="p-4 flex flex-wrap gap-4">
     <div
         v-for="project in projects"
         :key="project.title"
-        class="retro-window"
+        class="retro-window w-full"
     >
       <div class="retro-window-title">
-        <span class="select-none">{{ project.title }}</span>
+        <span class="select-none text-xl font-bold">{{ project.title }}</span>
       </div>
-      <div class="p-4">
+      <div class="p-4 bg-white">
         <p class="mb-2">{{ project.description }}</p>
         <span
             v-for="(tech, index) in project.tech"
             :key="index"
             class="text-sm text-gray-600">{{ tech }}<span v-if="index < project.tech.length - 1">, </span>
         </span>
-      </div>
-
       <!-- Topics with dynamic background colors -->
       <div class="flex flex-wrap gap-2 p-2">
         <span
@@ -24,6 +22,8 @@
             :key="index"
             :class="[topicsBgClass[topic], 'pill']">{{ topic }}</span>
       </div>
+      </div>
+
     </div>
   </div>
 </template>
