@@ -5,10 +5,9 @@
         :key="project.title"
         class="retro-window w-full"
     >
-      <div class="retro-window-title">
-        <span class="select-none text-xl font-bold">{{ project.title }}</span>
-      </div>
       <div class="project-card">
+        <span class="select-none text-xl font-bold">{{ project.title }}</span>
+        <hr class="my-2"/>
         <p class="mb-2">{{ project.description }}</p>
         <span
             v-for="(tech, index) in project.tech"
