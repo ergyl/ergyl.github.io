@@ -8,19 +8,19 @@
       <div class="retro-window-title">
         <span class="select-none text-xl font-bold">{{ project.title }}</span>
       </div>
-      <div class="p-4 bg-white">
+      <div class="project-card">
         <p class="mb-2">{{ project.description }}</p>
         <span
             v-for="(tech, index) in project.tech"
             :key="index"
-            class="text-sm text-gray-600">{{ tech }}<span v-if="index < project.tech.length - 1">, </span>
+            class="text-sm text-accent">{{ tech }}<span v-if="index < project.tech.length - 1">, </span>
         </span>
       <!-- Topics with dynamic background colors -->
       <div class="flex flex-wrap gap-2 p-2">
         <span
             v-for="(topic, index) in project.topics"
             :key="index"
-            :class="[topicsBgClass[topic], 'pill']">{{ topic }}</span>
+            class="bg-accent text-accent-content pill">{{ topic }}</span>
       </div>
       </div>
 
@@ -84,16 +84,6 @@ const projects = ref<Project[]>([
     ]
   },
 ]);
-
-// Define the mapping of topics to background color classes
-const topicsBgClass = computed(() => ({
-  "Backend": "bg-blue-400",
-  "Microservices": "bg-green-400",
-  "REST API": "bg-yellow-400",
-  "Frontend": "bg-pink-400",
-  "Game": "bg-purple-400",
-  "Desktop": "bg-teal-400",
-}));
 </script>
 
 <style scoped>

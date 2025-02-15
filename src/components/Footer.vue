@@ -1,11 +1,6 @@
 <template>
   <div class="text-center">
-    <div class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900">
-      <img src="https://www.svgrepo.com/show/131095/noodles.svg" class="h-12 mr-3 sm:h-9" alt="Logo">
-      <span>Erik Gylleus</span>
-    </div>
-
-    <span class="block text-sm text-center text-gray-500">© 2025 Erik Gylleus. All Rights Reserved.
+    <span class="block text-sm text-center">© 2025 Erik Gylleus. All Rights Reserved.
 		Built with
             <a
                 href="https://tailwindcss.com" class="hover:underline">Tailwind

@@ -5,9 +5,8 @@
       'focus:ring-4',
       rounded ? 'rounded-lg sm:rounded-md' : 'rounded-none',
       rounded ? 'min-h-14' : 'min-h-12',
-      'text-xl sm:text-2xl md:text-3xl focus:outline-none',
-      buttonClasses,
-      'px-5 py-2.5 inline-flex items-center',
+      'text-xl sm:text-2xl md:text-3xl focus:outline-none px-5 py-2.5',
+      buttonClasses
     ]"
       :disabled="disabled"
       :style="{ boxShadow }"
@@ -45,6 +44,10 @@ const props = defineProps({
   route: {
     type: String,
     default: "",
+  },
+  variant: {
+    type: String,
+    default: "primary",
   }
 });
 
@@ -58,12 +61,14 @@ const boxShadow = computed(() =>
 
 const buttonClasses = computed(() => {
   if (props.disabled) {
-    return "btn-disabled";
-  } else if (isPressed.value) {
-    return "btn-pressed";
-  } else {
-    return "btn-active hover:btn-hover";
+    return "btn btn-disabled";
   }
+
+  let variantClass = "btn";
+  if (props.variant === "secondary") variantClass += " btn-secondary";
+  if (props.variant === "accent") variantClass += " btn-accent";
+
+  return isPressed.value ? `${variantClass} active` : `${variantClass} hover`;
 });
 
 const handleClick = (event: MouseEvent | TouchEvent) => {

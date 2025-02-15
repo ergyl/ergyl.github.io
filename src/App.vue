@@ -2,6 +2,10 @@
   <header>
     <div class="wrapper">
      <ToggleThemeSwitch/>
+      <div class="flex items-center justify-center mb-5 text-2xl font-semibold">
+        <img src="https://www.svgrepo.com/show/131095/noodles.svg" class="h-12 mr-3 sm:h-9 dark:filter dark:invert" alt="Logo">
+        <span>Erik Gylleus</span>
+      </div>
     </div>
   </header>
 

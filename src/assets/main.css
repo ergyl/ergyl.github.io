@@ -56,7 +56,7 @@ Example: if you want to style all H2 elements you use the base layer.
         min-height: 100vh;
         font-family: monospace, Inter;
         text-rendering: optimizeLegibility;
-        @apply text-primary bg-primary;
+        @apply text-base-content bg-base-300;
     }
 
     body strong {
@@ -70,15 +70,11 @@ Example: if you want to style all H2 elements you use the base layer.
     a {
         text-decoration: none;
         transition: 0.3s;
-        @apply text-accent-content bg-accent
+        @apply text-secondary bg-secondary-content
     }
 
     a:hover {
-        @apply text-accent bg-accent-content
-    }
-
-    button:disabled {
-        color: grey;
+        @apply text-secondary-content bg-secondary
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -198,7 +194,7 @@ Example: if you want to style all H2 elements you use the base layer.
 
     #terminal {
         box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-        @apply bg-base-100 text-primary
+        @apply bg-neutral text-neutral-content
     }
 
     .card {
@@ -208,37 +204,65 @@ Example: if you want to style all H2 elements you use the base layer.
 
     .retro-window {
         box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-        @apply bg-base-content;
+        @apply bg-base-200;
     }
 
     .retro-window-title {
         box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-        @apply bg-gradient-to-r from-base-100 to-accent text-white px-2 py-1 flex justify-between items-center;
+        @apply bg-gradient-to-r from-primary to-neutral text-primary-content px-2 py-1 flex justify-between items-center;
+    }
+    
+    .project-card {
+        @apply bg-base-100 text-base-content shadow-lg p-4;
+    }
+
+    .project-card:hover {
+        opacity: var(--hover-opacity);
+        @apply bg-base-300;
     }
 
     .pill {
-        @apply text-base-100 rounded-full px-3 py-1 text-sm font-semibold
+        @apply text-base-content rounded-full px-3 py-1 text-sm font-semibold
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.375rem; /* Rounded-md */
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        transition: all 0.2s ease-in-out;
+        @apply bg-primary text-primary-content;
+    }
+
+    .btn:hover {
+        opacity: var(--hover-opacity);
+        @apply bg-primary text-primary-content;
+    }
+
+    .btn:active {
+        opacity: var(--pressed-opacity);
+        @apply bg-primary text-primary-content;
+    }
+
+    .btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, var(--focus-opacity));
     }
 
     .btn-disabled {
         cursor: not-allowed;
         opacity: var(--disabled-opacity);
-        @apply bg-yellow-200 text-accent-content
+        @apply bg-neutral text-neutral-content;
     }
 
-    .btn-active {
-        cursor: pointer;
-        @apply bg-accent text-accent-content hover:opacity-90
+    .btn-secondary {
+        @apply bg-secondary text-secondary-content;
     }
 
-    .btn-hover {
-        opacity: var(--hover-opacity);
-        @apply bg-red-400 text-accent-content
-    }
-
-    .btn-pressed {
-        opacity: var(--pressed-opacity);
-        @apply bg-blue-400 text-accent-content
+    .btn-accent {
+        @apply bg-accent text-accent-content;
     }
 
 
@@ -260,17 +284,17 @@ Example: if you want to style all H2 elements you use the base layer.
 @layer utilities {
     :root {
         --section-gap: 2rem;
-        --border-opacity: 0.12;
-        --high-emphasis-opacity: 0.87;
-        --medium-emphasis-opacity: 0.60;
-        --disabled-opacity: 0.38;
-        --idle-opacity: 0.04;
-        --hover-opacity: 0.04;
-        --focus-opacity: 0.12;
-        --selected-opacity: 0.08;
-        --activated-opacity: 0.12;
-        --pressed-opacity: 0.12;
-        --dragged-opacity: 0.08;
+        --border-opacity: 0.16;
+        --high-emphasis-opacity: 0.9;
+        --medium-emphasis-opacity: 0.7;
+        --disabled-opacity: 0.5;
+        --idle-opacity: 0.08;
+        --hover-opacity: 0.62;
+        --focus-opacity: 0.2;
+        --selected-opacity: 0.15;
+        --activated-opacity: 0.2;
+        --pressed-opacity: 0.22;
+        --dragged-opacity: 0.12;
     }
 
     .magic-margin {
