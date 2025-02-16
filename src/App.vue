@@ -1,14 +1,6 @@
 <template>
-  <header>
-    <div class="wrapper">
-      <ToggleThemeSwitch/>
-      <div class="flex items-center justify-center mb-5 text-2xl font-semibold">
-        <img src="https://www.svgrepo.com/show/131095/noodles.svg" class="h-12 mr-3 sm:h-9 dark:filter dark:invert"
-             alt="Logo">
-        <span>Erik Gylleus</span>
-      </div>
-    </div>
-  </header>
+      <Header/>
+
 
   <main>
     <div :class="{'min-h-screen': !allWindowsAreHidden, 'p-4': true}">
@@ -23,17 +15,20 @@
         <Window id="about" header-title="about.txt" body-title="About me"
                 @update:hidden="updateWindowState('about', $event)">
           <ExpandableContent>
-            <p> I'm Erik, a junior software developer based in Gothenburg, Sweden. Coding is my passion, and I'm dedicated
+            <p> I'm Erik, a junior software developer based in Gothenburg, Sweden. Coding is my passion, and I'm
+              dedicated
               to constantly improving through continuous learning. My journey in tech started with a curiosity about how
               computers work, and now I'm turning that curiosity into a career.
             </p>
             <p>
               I love coding and think of ways to improve my skillset all the time. For me, it's a creative outlet that I
-              didn't know I had longed for all my life. I'm mostly into back end development and specifically C# and Java,
+              didn't know I had longed for all my life. I'm mostly into back end development and specifically C# and
+              Java,
               but I'm open to all opportunities to branch out.
             </p>
             <p>
-              I see myself an enabler. I like to help. I work hard. I really love learning new things and strongly believe
+              I see myself an enabler. I like to help. I work hard. I really love learning new things and strongly
+              believe
               in sharing knowledge, teaching each other those new things we learn.
             </p>
             <p>
@@ -74,6 +69,7 @@ import Button from "@/components/ui/Button.vue";
 import ToggleThemeSwitch from "@/components/ui/ToggleThemeSwitch.vue";
 import ExpandableContent from "@/components/ui/ExpandableContent.vue";
 import Secret from "@/components/Secret.vue";
+import Header from "@/components/Header.vue";
 
 const theme = ref(localStorage.theme || "system");
 

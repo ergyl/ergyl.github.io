@@ -148,16 +148,10 @@ Example: if you want to style all H2 elements you use the base layer.
         }
 
         header {
-            @apply flex;
-            display: flex;
+            background-color: var(--color-base-100);
             place-items: center;
             padding-right: calc(var(--section-gap) / 2);
-        }
-
-        header .wrapper {
-            display: flex;
-            place-items: flex-start;
-            flex-wrap: wrap;
+            @apply flex;
         }
 
         h1 {
@@ -197,6 +191,67 @@ Example: if you want to style all H2 elements you use the base layer.
         @apply bg-neutral text-neutral-content
     }
 
+    #header {
+        background-color: var(--color-base-100);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    #logo {
+        width: 3rem;
+        height: 3rem;
+        transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    #logo-txt {
+        @apply font-semibold text-base;
+    }
+
+    /* sm breakpoint */
+    @media (min-width: 640px) {
+        #logo {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    /* md breakpoint */
+    @media (min-width: 768px) {
+        #logo {
+            width: 5rem;
+            height: 5rem;
+        }
+
+        #logo-txt {
+            @apply text-lg;
+        }
+    }
+
+    /* lg breakpoint */
+    @media (min-width: 1024px) {
+        #logo {
+            width: 6rem;
+            height: 6rem;
+        }
+
+        #logo-txt {
+            @apply text-2xl;
+        }
+    }
+
+    .dark #logo {
+        filter: invert(1);
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
     .card {
         border-radius: 0.5rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -211,7 +266,7 @@ Example: if you want to style all H2 elements you use the base layer.
         box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
         @apply bg-gradient-to-r from-primary to-neutral text-primary-content px-2 py-1 flex justify-between items-center;
     }
-    
+
     .project-card {
         @apply bg-base-100 text-base-content shadow-lg p-4;
     }
@@ -278,6 +333,7 @@ Example: if you want to style all H2 elements you use the base layer.
     .cursor-blink {
         animation: blink 1s step-end infinite;
     }
+
 }
 
 /* Utilities Layer: Custom utilities */
