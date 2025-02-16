@@ -20,9 +20,9 @@
 
 /* Dark theme */
 .dark {
-    --color-base-100: oklch(25.33% 0.016 252.42);
-    --color-base-200: oklch(23.26% 0.014 253.1);
-    --color-base-300: oklch(21.15% 0.012 254.09);
+    --color-base-100: oklch(0.356 0.025 253.155);
+    --color-base-200: oklch(0.29 0.019 254.813);
+    --color-base-300: oklch(0.225 0.013 258.371);
     --color-base-content: oklch(97.807% 0.029 256.847);
     --color-primary: oklch(58% 0.233 277.117);
     --color-primary-content: oklch(96% 0.018 272.314);
@@ -70,7 +70,7 @@ Example: if you want to style all H2 elements you use the base layer.
     a {
         text-decoration: none;
         transition: 0.3s;
-        @apply text-secondary bg-secondary-content
+        @apply text-secondary
     }
 
     a:hover {

@@ -22,10 +22,13 @@ defineProps<{
   bodyTitle?: string | undefined;
 }>();
 
+const emit = defineEmits(["update:hidden"])
+
 const isHidden = ref(false);
 
 function toggle() {
   isHidden.value = !isHidden.value;
+  emit("update:hidden", isHidden.value);
 }
 </script>
 

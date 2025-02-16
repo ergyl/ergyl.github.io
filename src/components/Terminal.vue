@@ -1,13 +1,7 @@
 <template>
-  <div class="retro-window max-w-2xl mx-auto mt-8">
-    <div class="retro-window-title">
-      <span>terminal.exe</span>
-      <span class="text-xl">×</span>
-    </div>
-    <div id="terminal" class="p-4 font-vt323 text-lg whitespace-pre-line">
-      {{ text }}
-      <span class="cursor-blink">_</span>
-    </div>
+  <div id="terminal" class="p-4 font-vt323 text-lg whitespace-pre-line border border-accent-100">
+    {{ text }}
+    <span class="cursor-blink">_</span>
   </div>
 </template>
 
@@ -15,7 +9,7 @@
 import {ref, onMounted} from 'vue';
 
 const text = ref('');
-const fullText = '> Hello World!\n> I am a Junior Software Developer\n> Welcome to my portfolio...';
+const fullText = '> Hello World!\n> My name is Erik\n> Welcome to my portfolio...';
 
 onMounted(() => {
   let currentIndex = 0;

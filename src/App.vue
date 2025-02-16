@@ -1,50 +1,58 @@
 <template>
   <header>
     <div class="wrapper">
-     <ToggleThemeSwitch/>
+      <ToggleThemeSwitch/>
       <div class="flex items-center justify-center mb-5 text-2xl font-semibold">
-        <img src="https://www.svgrepo.com/show/131095/noodles.svg" class="h-12 mr-3 sm:h-9 dark:filter dark:invert" alt="Logo">
+        <img src="https://www.svgrepo.com/show/131095/noodles.svg" class="h-12 mr-3 sm:h-9 dark:filter dark:invert"
+             alt="Logo">
         <span>Erik Gylleus</span>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="min-h-screen p-4">
+    <div :class="{'min-h-screen': !allWindowsAreHidden, 'p-4': true}">
       <div class="fixed inset-0 pointer-events-none"/>
-      <div class="max-w-6xl mx-auto space-y-4">
-        <Terminal/>
-        <Window id="about" header-title="about.txt" body-title="About me">
-          <p> I'm Erik, a junior software developer based in Gothenburg, Sweden. Coding is my passion, and I'm dedicated
-            to constantly improving through continuous learning. My journey in tech started with a curiosity about how
-            computers work, and now I'm turning that curiosity into a career.
-          </p>
-          <p>
-            I love coding and think of ways to improve my skillset all the time. For me, it's a creative outlet that I
-            didn't know I had longed for all my life. I'm mostly into back end development and specifically C# and Java,
-            but I'm open to all opportunities to branch out.
-          </p>
-          <p>
-            I see myself an enabler. I like to help. I work hard. I really love learning new things and strongly believe
-            in sharing knowledge, teaching each other those new things we learn.
-          </p>
-          <p>
-            Some other things that I think are fun are: gaming, cooking, and travelling.
-          </p>
+
+      <Secret v-if="allWindowsAreHidden" :resetWindows="resetWindows"/>
+
+      <div v-else class="max-w-6xl mx-auto space-y-4">
+        <Window id="terminal" header-title="terminal.exe" @update:hidden="updateWindowState('terminal', $event)">
+          <Terminal/>
         </Window>
-        <Window id="skills" header-title="skills.sys">
+        <Window id="about" header-title="about.txt" body-title="About me"
+                @update:hidden="updateWindowState('about', $event)">
+          <ExpandableContent>
+            <p> I'm Erik, a junior software developer based in Gothenburg, Sweden. Coding is my passion, and I'm dedicated
+              to constantly improving through continuous learning. My journey in tech started with a curiosity about how
+              computers work, and now I'm turning that curiosity into a career.
+            </p>
+            <p>
+              I love coding and think of ways to improve my skillset all the time. For me, it's a creative outlet that I
+              didn't know I had longed for all my life. I'm mostly into back end development and specifically C# and Java,
+              but I'm open to all opportunities to branch out.
+            </p>
+            <p>
+              I see myself an enabler. I like to help. I work hard. I really love learning new things and strongly believe
+              in sharing knowledge, teaching each other those new things we learn.
+            </p>
+            <p>
+              Some other things that I think are fun are: gaming, cooking, and travelling.
+            </p>
+          </ExpandableContent>
+        </Window>
+        <Window id="skills" header-title="skills.sys" @update:hidden="updateWindowState('skills', $event)">
           <Skills/>
         </Window>
-        <Window id="projects" header-title="projects/">
+        <Window id="projects" header-title="projects/" @update:hidden="updateWindowState('projects', $event)">
           <ProjectsOverview/>
         </Window>
-        <Window id="resume" header-title="resume.md" body-title="Checkout my CV">
-          <Button
-              text="My Resume"
-              :rounded=true
-              route="https://www.google.com/"/>
+        <Window id="resume" header-title="resume.md" body-title="Checkout my CV"
+                @update:hidden="updateWindowState('resume', $event)">
+          <Button text="My Resume" :rounded="true" route="https://www.google.com/"/>
         </Window>
-        <Window id="contact" header-title="contact.txt" body-title="Hi there">
+        <Window id="contact" header-title="contact.txt" body-title="Hi there"
+                @update:hidden="updateWindowState('contact', $event)">
           <small>Hello</small>
         </Window>
       </div>
@@ -57,34 +65,39 @@
 
 <script setup lang="ts">
 import Terminal from "@/components/Terminal.vue";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import Footer from "@/components/Footer.vue";
 import Window from "@/components/Window.vue";
 import Skills from "@/components/Skills.vue";
 import ProjectsOverview from "@/components/ProjectsOverview.vue";
 import Button from "@/components/ui/Button.vue";
 import ToggleThemeSwitch from "@/components/ui/ToggleThemeSwitch.vue";
+import ExpandableContent from "@/components/ui/ExpandableContent.vue";
+import Secret from "@/components/Secret.vue";
 
-// Reactive theme state
 const theme = ref(localStorage.theme || "system");
 
-/**
- * If the `theme` key does not exist in `localStorage` upon visiting
- * the website for the first time, the code will default to the value
- * `"system"`.
- *
- * The `applyTheme` function will then check the system preference for
- * the color scheme and apply the appropriate theme based on the
- * user's system settings.
- *
- * This code does not explicitly set the `theme` key in `localStorage`
- * to any value unless the user explicitly selects a theme.
- * It only sets the `theme` key when the user chooses either `"dark"` or `"light"`.
- *
- * If the theme is set to `"system"`, it removes the `theme` key from
- * `localStorage` and applies the system preference.
- *
- */
+const windowStates = ref(<Record<string, boolean>>{
+  terminal: false,
+  about: false,
+  skills: false,
+  projects: false,
+  resume: false,
+  contact: false,
+});
+
+const updateWindowState = (windowName: string, isHidden: boolean) => {
+  windowStates.value[windowName] = isHidden;
+};
+
+const allWindowsAreHidden = computed(() => Object.values(windowStates.value).every(hidden => hidden));
+
+const resetWindows = () => {
+  Object.keys(windowStates.value).forEach((window) => {
+    windowStates.value[window] = false;
+  })
+};
+
 const applyTheme = () => {
   const root = document.documentElement;
 
