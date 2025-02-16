@@ -48,6 +48,25 @@ This will:
     Push the dist/ folder to the gh-pages branch.
 
 --
+
+/**
+ * If the `theme` key does not exist in `localStorage` upon visiting
+ * the website for the first time, the code will default to the value
+ * `"system"`.
+ *
+ * The `applyTheme` function will then check the system preference for
+ * the color scheme and apply the appropriate theme based on the
+ * user's system settings.
+ *
+ * This code does not explicitly set the `theme` key in `localStorage`
+ * to any value unless the user explicitly selects a theme.
+ * It only sets the `theme` key when the user chooses either `"dark"` or `"light"`.
+ *
+ * If the theme is set to `"system"`, it removes the `theme` key from
+ * `localStorage` and applies the system preference.
+ *
+ */
+
 ### Type-Check, Compile and Minify for Production
 
 ```sh
