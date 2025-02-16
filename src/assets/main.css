@@ -56,7 +56,7 @@ Example: if you want to style all H2 elements you use the base layer.
         min-height: 100vh;
         font-family: monospace, Inter;
         text-rendering: optimizeLegibility;
-        @apply text-base-content bg-base-300;
+        @apply text-base-content bg-base-300 selection:bg-accent selection:text-accent-content;
     }
 
     body strong {
