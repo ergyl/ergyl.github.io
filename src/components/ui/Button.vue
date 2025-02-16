@@ -74,5 +74,12 @@ const buttonClasses = computed(() => {
 const handleClick = (event: MouseEvent | TouchEvent) => {
   if (props.disabled) return; 
   event.preventDefault();
+
+  if (props.route) {
+    const link = document.createElement('a');
+    link.href = props.route;
+    link.download = link.href.substring(link.href.lastIndexOf('/') + 1);
+    link.click();
+  }
 };
 </script>

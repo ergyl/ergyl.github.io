@@ -2,14 +2,14 @@
   <header>
     <div id="header" class="wrapper">
       <!-- Left side: Theme Toggle Switch -->
-      <ToggleThemeSwitch class="pl-4"/>
+      <ToggleThemeSwitch/>
 
       <!-- Right side: Logo and Text -->
-      <div class="flex items-center ml-auto space-x-4">
+      <div class="flex items-center ml-auto space-x-2">
         <img
             id="logo"
             src="https://www.svgrepo.com/show/131095/noodles.svg"
-            class="logo-size transition-all duration-300 dark:filter dark:invert"
+            class="transition-all duration-300"
             alt="Logo"
         />
         <span

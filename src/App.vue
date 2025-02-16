@@ -1,5 +1,5 @@
 <template>
-      <Header/>
+  <Header/>
 
 
   <main>
@@ -44,7 +44,10 @@
         </Window>
         <Window id="resume" header-title="resume.md" body-title="Checkout my CV"
                 @update:hidden="updateWindowState('resume', $event)">
-          <Button text="My Resume" :rounded="true" route="https://www.google.com/"/>
+          <div class="flex flex-row justify-center gap-4">
+            <Button text="ENG Resume" :rounded="true" :route="EngCV"/>
+            <Button text="SWE Resume" :rounded="true" :route="SweCV"/>
+          </div>
         </Window>
         <Window id="contact" header-title="contact.txt" body-title="Hi there"
                 @update:hidden="updateWindowState('contact', $event)">
@@ -66,10 +69,12 @@ import Window from "@/components/Window.vue";
 import Skills from "@/components/Skills.vue";
 import ProjectsOverview from "@/components/ProjectsOverview.vue";
 import Button from "@/components/ui/Button.vue";
-import ToggleThemeSwitch from "@/components/ui/ToggleThemeSwitch.vue";
 import ExpandableContent from "@/components/ui/ExpandableContent.vue";
 import Secret from "@/components/Secret.vue";
 import Header from "@/components/Header.vue";
+
+import SweCV from "@/assets/docs/Erik_CV_2025_SWE.pdf";
+import EngCV from "@/assets/docs/Erik_CV_2025_ENG.pdf";
 
 const theme = ref(localStorage.theme || "system");
 

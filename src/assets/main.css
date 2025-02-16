@@ -194,7 +194,7 @@ Example: if you want to style all H2 elements you use the base layer.
     #header {
         background-color: var(--color-base-100);
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         width: 100%;
     }
@@ -203,6 +203,7 @@ Example: if you want to style all H2 elements you use the base layer.
         width: 3rem;
         height: 3rem;
         transition: width 0.3s ease, height 0.3s ease;
+        @apply p-2;
     }
 
     #logo-txt {
@@ -249,7 +250,8 @@ Example: if you want to style all H2 elements you use the base layer.
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        max-width: 100%;
+        @apply px-2;
     }
 
     .card {
