@@ -44,14 +44,10 @@
         </Window>
         <Window id="resume" header-title="resume.md" body-title="Checkout my CV"
                 @update:hidden="updateWindowState('resume', $event)">
-          <div class="flex flex-row justify-center gap-4">
+          <div class="flex flex-row justify-center gap-4 pb-4">
             <Button text="ENG Resume" :rounded="true" :route="EngCV"/>
             <Button text="SWE Resume" :rounded="true" :route="SweCV"/>
           </div>
-        </Window>
-        <Window id="contact" header-title="contact.txt" body-title="Hi there"
-                @update:hidden="updateWindowState('contact', $event)">
-          <small>Hello</small>
         </Window>
       </div>
     </div>
@@ -84,7 +80,6 @@ const windowStates = ref(<Record<string, boolean>>{
   skills: false,
   projects: false,
   resume: false,
-  contact: false,
 });
 
 const updateWindowState = (windowName: string, isHidden: boolean) => {
