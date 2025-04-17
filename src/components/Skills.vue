@@ -14,8 +14,8 @@ import {computed, ref} from "vue";
 
 const skills = ref([
   {name: "C#"},
-  {name: "Java"},
   {name: ".NET"},
+  {name: "Java"},
   {name: "JavaScript"},
   {name: "TypeScript"},
   {name: "Git"},
