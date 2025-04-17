@@ -1,7 +1,6 @@
 <template>
   <Header/>
 
-
   <main>
     <div :class="{'min-h-screen': !allWindowsAreHidden, 'p-4': true}">
       <div class="fixed inset-0 pointer-events-none"/>
