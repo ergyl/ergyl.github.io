@@ -1,23 +1,16 @@
 <template>
   <header>
-    <div id="header" class="wrapper">
+    <div id="header" class="relative flex items-center justify-between p-6 w-full">
       <!-- Left side: Theme Toggle Switch -->
       <ToggleThemeSwitch/>
 
       <!-- Right side: Logo and Text -->
-      <div class="flex items-center ml-auto space-x-2">
-        <img
-            id="logo"
-            src="https://www.svgrepo.com/show/131095/noodles.svg"
-            class="transition-all duration-300"
-            alt="Logo"
-        />
-        <span
-            id="logo-txt"
-            class="logo-text text-base sm:text-lg md:text-xl lg:text-2xl font-semibold select-none transition-all duration-300"
-        >
-          Erik Gylleus
-        </span>
+      <div class="absolute left-1/2 transform -translate-x-1/2"><img
+          id="logo"
+          src="@/assets/logo.svg"
+          class="w-72 md:w-80 lg:w-96 h-auto p-2 transition-all duration-300 dark:invert"
+          alt="Logo"
+      />
       </div>
     </div>
   </header>

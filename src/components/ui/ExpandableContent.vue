@@ -4,14 +4,14 @@
     <div
         ref="contentRef"
         class="transition-all duration-300 overflow-hidden relative"
-        :class="{ 'max-h-24': !expanded, 'max-h-full': expanded }"
+        :class="{ 'max-h-36': !expanded, 'max-h-full': expanded }"
     >
       <slot />
 
       <!-- Gradient fade effect when collapsed -->
       <div
           v-if="!expanded && isOverflowing"
-          class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-base-100 to-transparent pointer-events-none"
+          class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-base-200 to-transparent pointer-events-none"
       ></div>
     </div>
 
