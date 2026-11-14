@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <span class="block text-sm text-center">© 2025 Erik Gylleus. All Rights Reserved.
+    <span class="block text-sm text-center">© 2026 Erik Gylleus. All Rights Reserved.
 		Built with
             <a
                 href="https://tailwindcss.com" class="hover:underline">Tailwind

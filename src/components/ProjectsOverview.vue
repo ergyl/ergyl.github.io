@@ -28,10 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import type { Project } from "@/models/Project.ts";
 
-// Sample projects
 const projects = ref<Project[]>([
   {
     title: "Classifieds Platform",
