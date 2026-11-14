@@ -26,11 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from "vue";
+import { inject, ref, onMounted, nextTick, type Ref } from "vue";
 
 const expanded = ref(false);
 const isOverflowing = ref(false);
 const contentRef = ref<HTMLElement | null>(null);
+const windowRef = inject<Ref<HTMLElement | null>>("windowRef");
 
 // Function to check if content overflows beyond 4 lines (~96px assuming 24px per line)
 const checkOverflow = () => {
@@ -40,13 +41,20 @@ const checkOverflow = () => {
 };
 
 // Run check after mounting to measure content
-onMounted(() => {
-  nextTick(checkOverflow);
+onMounted(async () => {
+ await nextTick(checkOverflow);
 });
 
-const toggleExpand = (event: Event) => {
+const toggleExpand = async (event: Event) => {
   event.preventDefault();
+  const shouldCollapse = expanded.value;
   expanded.value = !expanded.value;
+
+  if (shouldCollapse) {
+    await nextTick(() => {
+      windowRef?.value?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 };
 </script>
 

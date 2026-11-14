@@ -19,13 +19,6 @@
               and Java, but I'm open to all opportunities to branch out.
             </p>
             <p class="pt-5">
-              My roadmap for software development:
-              <br>
-              <span class="text-accent">"General Chuck Yeager — the first person to fly faster than sound—praised an airplane's engine system with
-              the words: `simple, few parts, easy to maintain, very strong`".</span>
-              <br><i>― Programming Pearls (1999) by Jon Bentley</i>
-            </p>
-            <p class="pt-5">
               I love coding and think of ways to improve my skillset all the time. For me, it's a creative outlet that I
               didn't know I'd been craving for most of my life.
             </p>
@@ -51,27 +44,20 @@
         <Window id="projects" header-title="projects/" @update:hidden="updateWindowState('projects', $event)">
           <ProjectsOverview/>
         </Window>
-        <Window id="todo" header-title="TODO.txt" body-title="MY TODO LIST">
-          <p>These are things I wanna do in my spare time. Some ideas for personal projects I've written down to dig
-            into. :)</p>
-          <ul class="list-disc px-4">
-            <li>Complete the <a href="https://github.com/theowni/Damn-Vulnerable-RESTaurant-API-Game" rel="external"
-                                target="_blank">Damn
-              Vulnerable RESTaurant</a> challenge to practise identifying and fixing vulnerabilities
-            </li>
-            <li>Build a simple AI chatbot with web speech API and Node.js</li>
-            <li>Create a CLI tool</li>
-            <li>Build a CDN from scratch using Lua</li>
-            <li>Build a Promise in JavaScript from scratch</li>
-            <li>Implement Bloom filter to learn how the data structure works under the hood</li>
-            <li>Create a Emulator/Virtual machine (maybe?)</li>
-          </ul>
+                <Window id="quote" header-title="simple.txt"
+                @update:hidden="updateWindowState('quote', $event)">
+                <p>
+              <span class="text-accent">General Chuck Yeager — the first person to fly faster than sound — praised an airplane's engine system with
+              the words: "simple, few parts, easy to maintain, very strong".</span>
+              <br><span class="text-sm"><i>― Programming Pearls (1999) by Jon Bentley</i></span>
+            </p>
         </Window>
-        <Window id="resume" header-title="resume.md" body-title="Checkout my CV"
+        <Window id="resume" header-title="resume.md"
                 @update:hidden="updateWindowState('resume', $event)">
-          <div class="flex flex-row justify-center gap-4 pb-4">
-            <Button text="ENG Resume" :rounded="true" :route="EngCV"/>
-            <Button text="SWE Resume" :rounded="true" :route="SweCV"/>
+          <div class="flex flex-col items-center justify-center gap-4 pb-4">
+            <p>Here it is, the mandatory document that I sometimes forget to update.</p>
+            <br>
+            <Button text="Download CV" :rounded="true" :route="EngCV"/>
           </div>
         </Window>
       </div>
@@ -94,13 +80,11 @@ import ExpandableContent from "@/components/ui/ExpandableContent.vue";
 import Secret from "@/components/Secret.vue";
 import Header from "@/components/Header.vue";
 
-import SweCV from "@/assets/docs/Erik_CV_2025_SWE.pdf";
-import EngCV from "@/assets/docs/Erik_CV_2025_ENG.pdf";
-
-const theme = ref(localStorage.theme || "system");
+import EngCV from "@/assets/docs/Erik_CV_2026_ENG.pdf";
 
 const windowStates = ref(<Record<string, boolean>>{
   terminal: false,
+  quote: false,
   about: false,
   skills: false,
   projects: false,
@@ -119,20 +103,4 @@ const resetWindows = () => {
   })
 };
 
-const applyTheme = () => {
-  const root = document.documentElement;
-
-  if (theme.value === "dark") {
-    root.classList.add("dark");
-    localStorage.theme = "dark";
-  } else if (theme.value === "light") {
-    root.classList.remove("dark");
-    localStorage.theme = "light";
-  } else {
-    // System preference
-    localStorage.removeItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    root.classList.toggle("dark", prefersDark);
-  }
-};
 </script>

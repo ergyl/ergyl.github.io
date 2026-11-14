@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isHidden" class="retro-window max-w-2xl mx-auto mt-8">
+  <div v-if="!isHidden" ref="windowRef" class="retro-window max-w-2xl mx-auto mt-8">
     <!-- Title -->
     <div class="retro-window-title">
       <span class="select-none"> {{ headerTitle }}</span>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {provide, ref} from "vue";
 
 defineProps<{
   headerTitle: string;
@@ -25,6 +25,9 @@ defineProps<{
 const emit = defineEmits(["update:hidden"])
 
 const isHidden = ref(false);
+const windowRef = ref<HTMLElement | null>(null);
+
+provide("windowRef", windowRef);
 
 function toggle() {
   isHidden.value = !isHidden.value;
