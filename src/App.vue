@@ -25,8 +25,8 @@
             <p class="pt-5">
               My interest in tech started early, much thanks to my dad who worked in IT while I was growing up. I spent
               a lot of time playing computer games and experimenting on my computer — whether it was making 3D models
-              and textures, building simple websites, or tweaking CSS just for fun. Now I'm turning that curiosity into
-              a career. Never stop learning, right?
+              and textures, building simple websites, or tweaking CSS just for fun. That curiosity lead me to pursue a 
+              career in software development, and I haven't looked back since. Never stop learning, right?
             </p>
             <p class="pt-5">
               I see myself an enabler. I like to help. I work hard. I really love learning new things and strongly
