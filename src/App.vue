@@ -34,7 +34,8 @@
               in sharing knowledge, teaching each other those new things we learn.
             </p>
             <p class="pt-5">
-              Some other things that I think are fun are: gaming, cooking, and travelling.
+              I'm also a husband and a father, so needless to say, I spend a lot of time with my family. 
+              Some other things I enjoy: gaming, cooking, and travelling.
             </p>
           </ExpandableContent>
         </Window>
